@@ -1,17 +1,18 @@
-// const contacts = require("../models/contacts");
-// const { createError } = require("../helpers");
+const { createError } = require("../helpers");
+const Contact = require("../models/contact");
 
-// const getContactById = async (req, res, next) => {
-//     try {
-//         const { contactId } = req.params;
-//         const result = await contacts.getContactById(contactId);
-//         if (!result) {
-//             throw createError(404);
-//         }
-//         res.json(result);
-//     } catch (error) {
-//         next(error);
-//     }
-// };
 
-// module.exports = getContactById;
+const getContactById = async (req, res, next) => {
+    try {
+        const { contactId } = req.params;
+        const result = await Contact.find({ _id:contactId });
+        if (!result) {
+            throw createError(404);
+        };       
+        res.json(result);
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports = getContactById;
