@@ -6,21 +6,10 @@ const updateStatusContact = async (req, res, next) => {
     const { contactId } = req.params;        
       const { favorite } = req.body;
     
-      const update = await Contact.findByIdAndUpdate({ _id: contactId }, { favorite: favorite });
-      if (!update) {
+      const result = await Contact.findByIdAndUpdate(contactId, { favorite: favorite }, {new:true});
+      if (!result) {
             throw createError(404);
-    };  
-        
-    // const contact = await Contact.find({ _id:contactId });
-    //     if (!contact) {
-    //         throw createError(404);
-    // };    
-    // contact[0].favorite = favorite;
-    
-    // await Contact.create(contact);
-    // const result = await Contact.find({ _id: contactId });
-      const result = await Contact.find({ _id: contactId });
-      
+    };     
         res.json(result);
     } catch (error) {
         next(error);
