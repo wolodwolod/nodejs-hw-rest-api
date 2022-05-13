@@ -5,7 +5,7 @@ const Contact = require("../models/contact");
 const getContactById = async (req, res, next) => {
     try {
         const { contactId } = req.params;
-        const result = await Contact.find({ _id:contactId });
+        const result = await Contact.findOne({ _id:contactId });
         if (!result) {
             throw createError(404);
         };       

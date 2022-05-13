@@ -6,7 +6,7 @@ const updateStatusContact = async (req, res, next) => {
     const { contactId } = req.params;        
       const { favorite } = req.body;
     
-      const update = await Contact.updateOne({ _id: contactId }, { favorite: favorite });
+      const update = await Contact.findByIdAndUpdate({ _id: contactId }, { favorite: favorite });
       if (!update) {
             throw createError(404);
     };  
