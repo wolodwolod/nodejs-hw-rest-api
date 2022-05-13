@@ -7,11 +7,11 @@ const add = Joi.object({
   favorite: Joi.boolean().default('false')
 });
 
-const favorite = Joi.object({  
+const statusUpdate = Joi.object({  
   favorite: Joi.boolean().required()
 });
 
 module.exports = {
   add,
-  favorite
+  statusUpdate
 };

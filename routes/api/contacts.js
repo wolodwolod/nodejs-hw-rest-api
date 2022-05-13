@@ -13,6 +13,6 @@ router.post('/', validation(schemas.add), ctrl.addContact);
 
 router.delete('/:contactId', ctrl.removeContact);
 
-router.patch('/:contactId/favorite', validation(schemas.favorite), ctrl.updateStatusContact);
+router.patch('/:contactId/favorite', validation(schemas.statusUpdate), ctrl.updateStatusContact);
 
 module.exports = router;
