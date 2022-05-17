@@ -34,13 +34,13 @@ const userSchema = Schema({
 const User = model("user", userSchema);
 
 
-const signup = Joi.object({
+const auth = Joi.object({
     password: Joi.string().min(5).required(),
     email: Joi.string().pattern(mailFormat).required(),    
 });
 
 const schemas = {
-    signup
+    auth
 };
 
 

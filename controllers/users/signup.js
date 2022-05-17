@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 const { User } = require("../../models_schemas/User");
 const { createError } = require("../../helpers");
 
-const register = async (req, res, next) => {
+const signup = async (req, res, next) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
@@ -21,4 +21,4 @@ const register = async (req, res, next) => {
     });
 };
 
-module.exports = register;
+module.exports = signup;
