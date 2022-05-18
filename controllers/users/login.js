@@ -22,13 +22,12 @@ const login = async (req, res, next) => {
     };
 
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "3h" });
-    
+
     const result = await User.findByIdAndUpdate(user._id, { token: token });
   if (!result) {
     throw createError(404);
   };
-    // user.token = token;
-    
+        
     res.status(201).json({
         token,
         user: {

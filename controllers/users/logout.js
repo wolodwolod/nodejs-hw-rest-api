@@ -15,8 +15,6 @@ const logout = async (req, res, next) => {
     throw createError(404);
   };
 
-// console.log(user)
-
     res.status(204).json({
         message: "No Content" 
     });

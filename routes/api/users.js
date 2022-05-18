@@ -9,6 +9,7 @@ const { schemas } = require("../../models_schemas/User");
 router.post('/signup', reqValidation(schemas.auth), asyncWrapper(ctrl.signup));
 router.post('/login', reqValidation(schemas.auth), asyncWrapper(ctrl.login));
 router.get('/logout', authValidation, asyncWrapper(ctrl.logout));
+router.get('/current', authValidation, asyncWrapper(ctrl.current));
 
 
 module.exports = router;
