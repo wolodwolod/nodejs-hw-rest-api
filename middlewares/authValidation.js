@@ -21,8 +21,8 @@ const authValidation = (req, res, next) => {
 
       req.token = token;
       req.user = user;
-    //   console.log(req.token, req.user)      
-        }
+         
+        };
     } catch (error) {
         throw createError(401, 'Not authorized');
     }         

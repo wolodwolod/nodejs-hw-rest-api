@@ -1,5 +1,4 @@
 const { Contact } = require("../../models_schemas/Contact");
-// console.log(Contact)
 
 const addContact = async (req, res, next) => {
     
