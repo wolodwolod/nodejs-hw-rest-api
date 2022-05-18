@@ -1,19 +1,23 @@
 const express = require('express');
 const ctrl = require("../../controllers/contacts");
 const { schemas } = require("../../models_schemas/Contact");
-const {validation} = require("../../middlewares");
+const {authValidation} = require("../../middlewares");
+const {reqValidation} = require("../../middlewares");
 const router = express.Router();
-const { ctrlWrapper } = require("../../helpers");
+const { asyncWrapper } = require("../../helpers");
 
 
-router.get('/', ctrlWrapper(ctrl.listContacts));
+router.use(authValidation);
 
-router.get('/:contactId', ctrlWrapper(ctrl.getContactById));
 
-router.post('/', validation(schemas.add), ctrlWrapper(ctrl.addContact));
+router.get('/', asyncWrapper(ctrl.listContacts));
 
-router.delete('/:contactId', ctrlWrapper(ctrl.removeContact));
+router.get('/:contactId', asyncWrapper(ctrl.getContactById));
 
-router.patch('/:contactId/favorite', validation(schemas.statusUpdate), ctrlWrapper(ctrl.updateStatusContact));
+router.post('/', reqValidation(schemas.add), asyncWrapper(ctrl.addContact));
+
+router.delete('/:contactId', asyncWrapper(ctrl.removeContact));
+
+router.patch('/:contactId/favorite', reqValidation(schemas.statusUpdate), asyncWrapper(ctrl.updateStatusContact));
 
 module.exports = router;
