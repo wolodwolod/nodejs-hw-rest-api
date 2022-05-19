@@ -1,4 +1,4 @@
-const { Schema, SchemaTypes, model } = require("mongoose");
+const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 
 const mailFormat = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -25,10 +25,7 @@ const userSchema = Schema({
         type: String,
         default: null
     },
-    owner: {
-        type: SchemaTypes.ObjectId,
-        ref: 'user'      
-    }
+    
 }, { versionKey: false, timestamps: true });
 
 const User = model("user", userSchema);
