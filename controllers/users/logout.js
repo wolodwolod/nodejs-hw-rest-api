@@ -11,7 +11,7 @@ const logout = async (req, res, next) => {
         throw createError(401, "Not authorized");
     };
 
-    const result = await User.findByIdAndUpdate(user._id, { token: null });
+    const result = await User.findByIdAndUpdate(user._id, { token: "" });
     if (!result) {
     throw createError(404);
   };
