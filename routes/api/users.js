@@ -10,6 +10,7 @@ router.post('/signup', reqValidation(schemas.auth), asyncWrapper(ctrl.signup));
 router.post('/login', reqValidation(schemas.auth), asyncWrapper(ctrl.login));
 router.get('/logout', authValidation, asyncWrapper(ctrl.logout));
 router.get('/current', authValidation, asyncWrapper(ctrl.current));
+router.patch('/subscription', authValidation, reqValidation(schemas.statusUpdate), asyncWrapper(ctrl.updateStatusUser));
 
 
 module.exports = router;

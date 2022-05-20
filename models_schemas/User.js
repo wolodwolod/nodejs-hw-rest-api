@@ -36,8 +36,13 @@ const auth = Joi.object({
     email: Joi.string().pattern(mailFormat).required(),    
 });
 
+const statusUpdate = Joi.object({  
+  subscription: Joi.string().valid("starter", "pro", "business").required()
+});
+
 const schemas = {
-    auth
+    auth,
+    statusUpdate
 };
 
 

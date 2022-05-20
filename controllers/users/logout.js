@@ -4,7 +4,7 @@ const { createError } = require("../../helpers");
 const logout = async (req, res, next) => {
     const { id } = req.user;
     // console.log(req.user.id)
-    console.log(id)
+    // console.log(id)
 
     const user = await User.findById(id);
     if (!user) {
