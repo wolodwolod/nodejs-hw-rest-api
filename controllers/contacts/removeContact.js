@@ -3,10 +3,10 @@ const { Contact } = require("../../models_schemas/Contact");
 
 const removeContact = async (req, res, next) => {
 
-    const { contactId } = req.params;
-    const owner = req.user.id;   
+    const _id = req.params.contactId;
+    const owner = req.user._id;   
 
-    const result = await Contact.findOneAndRemove({_id: contactId, owner});
+    const result = await Contact.findOneAndRemove({_id, owner});
     if (!result) {
         createError(404);
     }

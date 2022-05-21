@@ -3,10 +3,10 @@ const { Contact } = require("../../models_schemas/Contact");
 
 
 const getContactById = async (req, res, next) => {
-    const owner = req.user.id;    
-    const { contactId } = req.params;
+    const owner = req.user._id;    
+    const _id = req.params.contactId;
     
-    const result = await Contact.findOne({_id: contactId, owner});
+    const result = await Contact.findOne({_id, owner});
     if (!result) {
             throw createError(404);
         };       
