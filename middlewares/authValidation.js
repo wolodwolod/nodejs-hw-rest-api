@@ -17,14 +17,13 @@ const authValidation = async (req, res, next) => {
 
     try {      
         if (jwt.verify(token, SECRET_KEY)) {
-            const user = jwt.decode(token, SECRET_KEY);
+            const payload = jwt.decode(token, SECRET_KEY);
 
-            const result = await User.findById(user.id);
-            if(!result || (result.token !== token)){
+            const user = await User.findById(payload.id);
+            if(!user || (user.token !== token)){
                 throw createError(401);
-            }
-
-    //   req.token = token;
+          };
+    
       req.user = user;
          
         };

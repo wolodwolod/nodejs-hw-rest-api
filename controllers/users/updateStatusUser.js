@@ -2,22 +2,18 @@ const { User } = require("../../models_schemas/User");
 const { createError } = require("../../helpers");
 
 const updateStatusUser = async (req, res, next) => {
-    const { id } = req.user;
-    const { subscription } = req.body;
 
-    const user = await User.findById(id);
-    if (!user) {
-        throw createError(401, "Not authorized");
-    };
+  const { _id }  = req.user;
+    const { subscription } = req.body;    
     
-    const result = await User.findOneAndUpdate(user._id, {$set: {subscription}}, { new: true });
-  if (!result) {
+    const updatedUser = await User.findOneAndUpdate(_id, {$set: {subscription}}, { new: true });
+  if (!updatedUser) {
     throw createError(404);
   };
     res.json( {        
         user: {
-            email: user.email,
-            subscription: user.subscription
+            email: updatedUser.email,
+            subscription: updatedUser.subscription
         }
     });
 };
