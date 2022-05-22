@@ -5,7 +5,7 @@ const {authValidation} = require("../../middlewares");
 const {reqValidation} = require("../../middlewares");
 const router = express.Router();
 const { asyncWrapper } = require("../../helpers");
-console.log(authValidation)
+
 
 router.use(authValidation);
 
