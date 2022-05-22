@@ -1,6 +1,8 @@
 const { Contact } = require("../../models_schemas/Contact");
 
 const listContacts = async (req, res, next) => {
+
+        console.log(Contact)
      
         const owner = req.user._id;
         let { page, limit } = req.query;
@@ -8,14 +10,13 @@ const listContacts = async (req, res, next) => {
 
         limit = parseInt(limit) > 20 ? 20 : parseInt(limit);        
 
-        const result = await Contact.find({ owner })
+        const ownerContacts = await Contact.find({ owner })
                 .populate("owner", "email")
                 .select({ __v: 0 })
                 .skip(skip)
-                .limit(limit);
-;      
+                .limit(limit);      
         
-        res.json(result);
+        res.json(ownerContacts);
    
 };
 
