@@ -1,7 +1,7 @@
 const { User } = require("../../models_schemas/User");
 const { createError } = require("../../helpers");
 
-const updateStatusUser = async (req, res, next) => {
+const updateUserStatus = async (req, res, next) => {
 
   const { _id }  = req.user;
     const { subscription } = req.body;    
@@ -18,4 +18,4 @@ const updateStatusUser = async (req, res, next) => {
     });
 };
 
-module.exports = updateStatusUser;
+module.exports = updateUserStatus;
