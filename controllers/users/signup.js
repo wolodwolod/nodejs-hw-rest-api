@@ -14,6 +14,9 @@ const signup = async (req, res, next) => {
     const hashPass = await bcrypt.hash(password, 10);
 
     const result = await User.create({ email, password: hashPass, avatarURL });
+    
+    // const updatedUser = await User.findOneAndUpdate(email, {$set: {avatarURL}}, { new: true });
+    
     res.status(201).json({
         user: {
             email: result.email,
@@ -21,6 +24,8 @@ const signup = async (req, res, next) => {
             avatarURL
         }
     });
+
+
 };
 
 module.exports = signup;

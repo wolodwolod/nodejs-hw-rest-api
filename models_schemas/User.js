@@ -43,9 +43,15 @@ const statusUpdate = Joi.object({
   subscription: Joi.string().valid("starter", "pro", "business").required()
 });
 
+const avatarUpdate = Joi.object({  
+  avatarURL: Joi.string().required()
+}
+);
+
 const schemas = {
     auth,
-    statusUpdate
+    statusUpdate,
+    avatarUpdate
 };
 
 
