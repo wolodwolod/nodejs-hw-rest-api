@@ -1,11 +1,11 @@
 const { User } = require("../../models_schemas/User");
-// const { createError } = require("../../helpers");
 const path = require("path");
 const fs = require("fs/promises");
+const Jimp = require("jimp");
+
 const { createError } = require("../../helpers");
 
 const avatarsDir = path.join(__dirname, "../../", "public", "avatars");
-
 
 const updateUserAvatar = async (req, res, next) => {
 
@@ -14,12 +14,13 @@ const updateUserAvatar = async (req, res, next) => {
     const [extension] = filename.split(".").reverse();
     const newFilename = `avatar.${_id}.${extension}`
     const resultDir = path.join(avatarsDir, newFilename);
+
     await fs.rename(tmpDir, resultDir);
 
-    // console.log(_id)
+    const avatarImg = await Jimp.read(resultDir);
+    await avatarImg.resize(250, 250).write(resultDir);
 
-    const avatarURL = path.join("avatars", newFilename);
-    // await User.findOneAndUpdate(_id, { $set: { avatarURL } });
+    const avatarURL = path.join("avatars", newFilename);    
 
     const updatedUser = await User.findByIdAndUpdate(_id, {avatarURL}, { new: true });
   if (!updatedUser) {
@@ -28,9 +29,7 @@ const updateUserAvatar = async (req, res, next) => {
     res.json( {        
             avatarURL: updatedUser.avatarURL            
         }
-    );
-
-   
+    );   
 };
 
 module.exports = updateUserAvatar;
