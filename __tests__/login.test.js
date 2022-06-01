@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const request = require("supertest");
 require("dotenv").config();
+require("@types/jest");
+
 
 const app = require("../app");
 const {User} = require('../models_schemas/User');
