@@ -8,8 +8,6 @@ const {User} = require('../models_schemas/User');
 
 const { DB_TEST_HOST } = process.env;
 
-// const { describe, beforeAll, afterAll, beforeEach, afterEach, test, expect } = require("jest");
-
 
 describe("test auth routes", () => {
   let server;
