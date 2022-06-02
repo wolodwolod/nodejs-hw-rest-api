@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
-// const gravatar = require('gravatar');
 
 const mailFormat = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
@@ -28,6 +27,14 @@ const userSchema = Schema({
         type: String,
         default: null
     },
+    verify: {
+    type: Boolean,
+    default: false,
+  },
+  verificationToken: {
+    type: String,
+    required: [true, 'Verify token is required'],
+  },
     
 }, { versionKey: false, timestamps: true });
 
@@ -48,10 +55,15 @@ const avatarUpdate = Joi.object({
 }
 );
 
+const emailVerify = Joi.object({
+    email: Joi.string().pattern(mailFormat).required(),
+})
+
 const schemas = {
     auth,
     statusUpdate,
-    avatarUpdate
+    avatarUpdate,
+    emailVerify
 };
 
 
