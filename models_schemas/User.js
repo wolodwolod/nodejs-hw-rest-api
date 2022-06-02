@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
+// const gravatar = require('gravatar');
 
 const mailFormat = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
@@ -18,8 +19,10 @@ const userSchema = Schema({
     subscription: {
         type: String,
         enum: ["starter", "pro", "business"],    
-        default: "starter"
-    
+        default: "starter"    
+    },
+    avatarURL:  {
+        type: String        
     },
     token: {
         type: String,
@@ -40,9 +43,15 @@ const statusUpdate = Joi.object({
   subscription: Joi.string().valid("starter", "pro", "business").required()
 });
 
+const avatarUpdate = Joi.object({  
+  avatarURL: Joi.string().required()
+}
+);
+
 const schemas = {
     auth,
-    statusUpdate
+    statusUpdate,
+    avatarUpdate
 };
 
 

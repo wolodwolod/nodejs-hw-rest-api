@@ -18,6 +18,6 @@ router.post('/', reqValidation(schemas.add), asyncWrapper(ctrl.addContact));
 
 router.delete('/:contactId', asyncWrapper(ctrl.removeContact));
 
-router.patch('/:contactId/favorite', reqValidation(schemas.statusUpdate), asyncWrapper(ctrl.updateStatusContact));
+router.patch('/:contactId/favorite', reqValidation(schemas.statusUpdate), asyncWrapper(ctrl.updateContactStatus));
 
 module.exports = router;
