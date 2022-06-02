@@ -2,15 +2,12 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const request = require("supertest");
 require("dotenv").config();
-require("@types/jest");
 
 
 const app = require("../app");
 const {User} = require('../models_schemas/User');
 
 const { DB_TEST_HOST } = process.env;
-
-// const { describe, beforeAll, afterAll, beforeEach, afterEach, test, expect } = require("jest");
 
 
 describe("test auth routes", () => {
@@ -28,7 +25,7 @@ describe("test auth routes", () => {
     })
   });
 
-  test("test login route", async () => {
+  test("login route", async () => {
     const newUser = {
       email: "bendyk@gmail.com",
       password: "1234567"
