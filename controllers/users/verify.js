@@ -18,7 +18,7 @@ const {error} = schemas.emailVerify.validate(req.body);
         const msg = {
             to: email,
             subject: "Confirmation of registration",
-            html: `<a target="_blank" href="http://localhost:3000/api/users/verify/${user.verificationToken}">Click to confirm email</a>`
+            html: `<a target="_blank" href="http://localhost:3000/api/users/verify/${user.verificationToken}">Click to confirm your email</a>`
         };
     await sendEmail(msg);
     
