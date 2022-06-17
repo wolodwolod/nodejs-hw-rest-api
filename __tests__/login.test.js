@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const request = require("supertest");
 require("dotenv").config();
+const { nanoid } = require("nanoid");
 
 
 const app = require("../app");
@@ -28,7 +29,9 @@ describe("test auth routes", () => {
   test("login route", async () => {
     const newUser = {
       email: "bendyk@gmail.com",
-      password: "1234567"
+      password: "1234567",
+      verify: true,
+      verificationToken: nanoid()
     };
    
     newUser.password = await bcrypt.hash(newUser.password, 10);

@@ -9,6 +9,10 @@ const { schemas } = require("../../models_schemas/User");
 
 router.post('/signup', reqValidation(schemas.auth), asyncWrapper(ctrl.signup));
 
+router.get('/verify/:verificationToken', asyncWrapper(ctrl.verifyToken));
+
+router.post('/verify', asyncWrapper(ctrl.verify));
+
 router.post('/login', reqValidation(schemas.auth), asyncWrapper(ctrl.login));
 
 router.get('/current', authValidation, asyncWrapper(ctrl.current));
